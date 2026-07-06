@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顺行者学苑 · 学习资源库</title>
+    <!-- Open Graph / 微信分享预览 -->
+    <meta property="og:title" content="顺行者学苑 · 学习资源库">
+    <meta property="og:description" content="叶顺天老师精选学习资料 · 让学习有系统、有方法、有结果">
+    <meta property="og:image" content="https://simon091014.github.io/xuexiyuan/logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="顺行者学苑 · 学习资源库">
+    <meta name="twitter:description" content="叶顺天老师精选学习资料">
+    <meta name="twitter:image" content="https://simon091014.github.io/xuexiyuan/logo.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f7fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 40px 24px 32px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 6px;
+        }
+        .header .contact-line {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .header .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .header .contact-item svg {
+            width: 14px;
+            height: 14px;
+            fill: rgba(255,255,255,0.7);
+            flex-shrink: 0;
+        }
+        .header .contact-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        .header .contact-item a:hover {
+            color: #4fc3f7;
+        }
+        .header .stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+        .header .stat-item {
+            text-align: center;
+        }
+        .header .stat-num {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4fc3f7;
+        }
+        .header .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .nav-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            background: #f0f0f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            color: #16213e;
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 32px;
+            scroll-margin-top: 60px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #16213e;
+        }
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #16213e;
+        }
+        .section-count {
+            font-size: 12px;
+            color: #999;
+            margin-left: auto;
+        }
+
+        /* Sub-section (for 学科 sub-categories) */
+        .sub-section {
+            margin-bottom: 20px;
+            margin-left: 12px;
+        }
+        .sub-section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            padding-left: 12px;
+            border-left: 3px solid #90caf9;
+        }
+
+        /* Note Card */
+        .note-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: all 0.2s;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .note-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        .note-card .note-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .note-card .note-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+        .note-card .note-meta {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .note-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #f0f7ff;
+            color: #1976d2;
+        }
+
+        /* Empty placeholder */
+        .placeholder {
+            background: #fafafa;
+            border: 1px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #999;
+            font-size: 12px;
+        }
+        .footer a {
+            color: #16213e;
+            text-decoration: none;
+        }
+
+        /* Color themes for section icons */
+        .icon-method { background: #e8f5e9; }
+        .icon-chinese { background: #fff3e0; }
+        .icon-math { background: #e3f2fd; }
+        .icon-english { background: #f3e5f5; }
+        .icon-physics { background: #e0f7fa; }
+        .icon-zizhao { background: #fce4ec; }
+        .icon-ai { background: #e0f2f1; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>顺行者学苑 · 学习资源库</h1>
+        <div class="subtitle">叶顺天老师精选学习资料 · 点击卡片直接阅读</div>
+        <div class="contact-line">
+            <span>更多疑问咨询叶老师</span>
+            <span class="contact-item">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+                <a href="tel:13316505151">13316505151</a>
+            </span>
+            <span class="contact-item">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.69 2.03a10 10 0 016.62 0c.27.08.47.32.52.6l.38 2.26a.75.75 0 01-.23.67l-1.46 1.3a.5.5 0 00-.13.46l.56 2.24a.5.5 0 01-.14.48l-.9.85a.5.5 0 01-.5.12l-2.16-.65a.5.5 0 00-.48.12l-1.7 1.7a10.06 10.06 0 01-3.74-3.74l1.7-1.7a.5.5 0 00.12-.48l-.65-2.16a.5.5 0 01.12-.5l.85-.9a.5.5 0 01.48-.14l2.24.56a.5.5 0 00.46-.13l1.3-1.46a.75.75 0 01.67-.23l2.26.38c.28.05.52.25.6.52zM12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16z"/></svg>
+                <span>zscz0627</span>
+            </span>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-num" id="totalNotes">0</div>
+                <div class="stat-label">学习资源</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">6</div>
+                <div class="stat-label">板块分类</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="#method" class="nav-btn">📐 学习方法与规划</a>
+        <a href="#subject" class="nav-btn">📚 学科</a>
+        <a href="#zizhao" class="nav-btn">🎯 自主招生</a>
+        <a href="#analysis" class="nav-btn">📊 学情分析</a>
+        <a href="#ai" class="nav-btn">🤖 AI板块</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- ========== 板块一：学习方法与规划 ========== -->
+        <div class="section" id="method">
+            <div class="section-header">
+                <div class="section-icon icon-method">📐</div>
+                <div class="section-title">学习方法与规划</div>
+                <div class="section-count" id="method-count">0篇</div>
+            </div>
+            <div id="method-notes">
+                <a class="note-card" href="https://www.biji.com/note/share_note/QxvOgjX9QOLlL" target="_blank">
+                    <div class="note-title">暑期成长营·全学科知识架构搭建方案说明书</div>
+                    <div class="note-desc">全学科知识体系搭建的系统方案，帮助学生构建完整的知识框架</div>
+                    <div class="note-meta"><span class="note-tag">学习方法</span><span class="note-tag">知识架构</span></div>
+                </a>
+                <a class="note-card" href="https://www.biji.com/note/share_note/XJz7o5rZlOVX5" target="_blank">
+                    <div class="note-title">初中生使用得到大脑指南</div>
+                    <div class="note-desc">专为初中生设计的得到大脑使用指南，高效利用AI工具提升学习效率</div>
+                    <div class="note-meta"><span class="note-tag">工具指南</span><span class="note-tag">得到大脑</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== 板块二：学科 ========== -->
+        <div class="section" id="subject">
+            <div class="section-header">
+                <div class="section-icon icon-chinese">📚</div>
+                <div class="section-title">学科</div>
+                <div class="section-count" id="subject-count">0篇</div>
+            </div>
+
+            <!-- 语文 -->
+            <div class="sub-section" id="chinese">
+                <div class="sub-section-title">🈶 语文</div>
+                <div id="chinese-notes">
+                    <a class="note-card" href="https://www.biji.com/note/share_note/88jbW7aPRrAyv" target="_blank">
+                        <div class="note-title">语文，可以这样学得不一样</div>
+                        <div class="note-desc">给初中同学的第二封信——AI时代语文学习的另一种打开方式</div>
+                        <div class="note-meta"><span class="note-tag">语文</span><span class="note-tag">AI赋能</span></div>
+                    </a>
+                    <a class="note-card" href="https://www.biji.com/note/share_note/v7pqbaKoKl7PL" target="_blank">
+                        <div class="note-title">人物传定三观（书目）</div>
+                        <div class="note-desc">30个专题、约120位人物传记推荐，按自然科学/社会科学/人文科学/人文艺术四大板块整理</div>
+                        <div class="note-meta"><span class="note-tag">语文</span><span class="note-tag">阅读书单</span></div>
+                    </a>
+                    <a class="note-card" href="https://www.biji.com/note/share_note/yeogxP7xZ1WWJ" target="_blank">
+                        <div class="note-title">语文｜从学科素养出发的学习大纲</div>
+                        <div class="note-desc">基于学科核心素养的初中语文学习大纲，明确能力目标与提升路径</div>
+                        <div class="note-meta"><span class="note-tag">语文</span><span class="note-tag">学习大纲</span></div>
+                    </a>
+                    <a class="note-card" href="https://www.biji.com/note/share_note/AgMBYWYO8PRyR" target="_blank">
+                        <div class="note-title">作文，可以这样写得不一样</div>
+                        <div class="note-desc">突破套路化写作，用独特视角和真实表达写出有深度的作文</div>
+                        <div class="note-meta"><span class="note-tag">语文</span><span class="note-tag">作文</span></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 数学 -->
+            <div class="sub-section" id="math">
+                <div class="sub-section-title">🔢 数学</div>
+                <div id="math-notes">
+                    <a class="note-card" href="https://www.biji.com/note/share_note/QxvX1K72kaeb7" target="_blank">
+                        <div class="note-title">初中理科 · 计算错题汇总表</div>
+                        <div class="note-desc">系统整理初中理科计算易错题型，帮助精准定位薄弱环节并针对性突破</div>
+                        <div class="note-meta"><span class="note-tag">数学</span><span class="note-tag">错题整理</span></div>
+                    </a>
+                    <a class="note-card" href="https://www.biji.com/note/share_note/6gBK8WxqMRr17" target="_blank">
+                        <div class="note-title">数学｜从学科素养出发的学习大纲</div>
+                        <div class="note-desc">基于学科核心素养的初中数学学习大纲，明确能力目标与提升路径</div>
+                        <div class="note-meta"><span class="note-tag">数学</span><span class="note-tag">学习大纲</span></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 英语 -->
+            <div class="sub-section" id="english">
+                <div class="sub-section-title">🔤 英语</div>
+                <div id="english-notes">
+                    <a class="note-card" href="https://www.biji.com/note/share_note/1qnvzWLoKWgW9" target="_blank">
+                        <div class="note-title">英语｜从学科素养出发的学习大纲</div>
+                        <div class="note-desc">基于学科核心素养的初中英语学习大纲，明确能力目标与提升路径</div>
+                        <div class="note-meta"><span class="note-tag">英语</span><span class="note-tag">学习大纲</span></div>
+                    </a>
+                    <a class="note-card" href="https://www.biji.com/note/share_note/1qnvz8RmdKVj2" target="_blank">
+                        <div class="note-title">顺·行者教你如何科学学外语</div>
+                        <div class="note-desc">叶顺天老师分享的外语学习方法论，从输入到输出的科学路径</div>
+                        <div class="note-meta"><span class="note-tag">英语</span><span class="note-tag">学习方法</span></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 物理 -->
+            <div class="sub-section" id="physics">
+                <div class="sub-section-title">⚡ 物理</div>
+                <div id="physics-notes">
+                    <a class="note-card" href="https://www.biji.com/note/share_note/Qxvk5qn8MQkLR" target="_blank">
+                        <div class="note-title">物理｜从学科素养出发的学习大纲</div>
+                        <div class="note-desc">基于学科核心素养的初中物理学习大纲，明确能力目标与提升路径</div>
+                        <div class="note-meta"><span class="note-tag">物理</span><span class="note-tag">学习大纲</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== 板块三：自主招生 ========== -->
+        <div class="section" id="zizhao">
+            <div class="section-header">
+                <div class="section-icon icon-zizhao">🎯</div>
+                <div class="section-title">自主招生</div>
+                <div class="section-count" id="zizhao-count">0篇</div>
+            </div>
+            <div id="zizhao-notes">
+                <a class="note-card" href="https://www.biji.com/note/share_note/rBzq22vlejyBe" target="_blank">
+                    <div class="note-title">深圳中考自主招生完整指南（2026-2027版）</div>
+                    <div class="note-desc">全面解读深圳中考自主招生政策、流程、备考策略，助力目标校冲刺</div>
+                    <div class="note-meta"><span class="note-tag">自主招生</span><span class="note-tag">深圳中考</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== 板块四：学情分析 ========== -->
+        <div class="section" id="analysis">
+            <div class="section-header">
+                <div class="section-icon" style="background:#f1f8e9;">📊</div>
+                <div class="section-title">学情分析</div>
+                <div class="section-count" id="analysis-count">0篇</div>
+            </div>
+            <div id="analysis-notes">
+                <a class="note-card" href="https://www.biji.com/note/share_note/6gBK81wNRL44m" target="_blank">
+                    <div class="note-title">八下上半学期复盘与下半学期规划书 · 致家长（方志祺）</div>
+                    <div class="note-desc">方志祺同学八下上半学期学情复盘与下半学期个性化提升规划</div>
+                    <div class="note-meta"><span class="note-tag">学情分析</span><span class="note-tag">方志祺</span></div>
+                </a>
+                <a class="note-card" href="https://www.biji.com/note/share_note/7gv92aYal6y3e" target="_blank">
+                    <div class="note-title">八下上半学期复盘与下半学期规划书 · 致家长（王浩轩）</div>
+                    <div class="note-desc">王浩轩同学八下上半学期学情复盘与下半学期个性化提升规划</div>
+                    <div class="note-meta"><span class="note-tag">学情分析</span><span class="note-tag">王浩轩</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========== 板块五：AI板块 ========== -->
+        <div class="section" id="ai">
+            <div class="section-header">
+                <div class="section-icon icon-ai">🤖</div>
+                <div class="section-title">AI板块</div>
+                <div class="section-count" id="ai-count">0篇</div>
+            </div>
+            <div id="ai-notes">
+                <a class="note-card" href="https://www.biji.com/note/share_note/5JweYqYmVmaO2" target="_blank">
+                    <div class="note-title">AI 时代，你的学习可以这样不一样</div>
+                    <div class="note-desc">给初中同学的一封信——在AI已经走进每个人生活的今天，一个初中生的学习可以怎么不一样</div>
+                    <div class="note-meta"><span class="note-tag">AI赋能</span><span class="note-tag">学习方法</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        顺行者学苑 · 让学习有系统、有方法、有结果<br>
+        <a href="https://biji.com" target="_blank">学习资源由「得到大脑」提供</a>
+    </div>
+
+    <script>
+        // 自动计算篇数
+        document.querySelectorAll('.section').forEach(section => {
+            const sectionId = section.id;
+            const countEl = section.querySelector(`#${sectionId}-count`);
+            if (!countEl) return;
+            const noteCards = section.querySelectorAll('.note-card').length;
+            const placeholders = section.querySelectorAll('.placeholder').length;
+            if (placeholders > 0 && noteCards === 0) {
+                countEl.textContent = '0篇';
+            } else {
+                countEl.textContent = noteCards + '篇';
+            }
+        });
+        
+        // 更新总数
+        const totalNotes = document.querySelectorAll('.note-card').length;
+        document.getElementById('totalNotes').textContent = totalNotes;
+
+        // 导航高亮
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
